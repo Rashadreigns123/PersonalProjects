@@ -3,12 +3,14 @@ var numberOfButtons = document.querySelectorAll(".drum").length;
 for (var i = 0; i < numberOfButtons; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     makeSound(this.innerHTML);
+    buttenAnimation(this.innerHTML);
   });
 }
 
 document.addEventListener("keydown", (e) => {
   console.log(e.key);
   makeSound(e.key);
+  buttenAnimation(e.key);
 });
 
 makeSound = (key) => {
@@ -42,4 +44,13 @@ makeSound = (key) => {
       audio.play();
       break;
   }
+};
+
+buttenAnimation = (key) => {
+  var activeButton = document.querySelector("." + key);
+  activeButton.classList.add("pressed");
+
+  setTimeout(() => {
+    activeButton.classList.remove("pressed");
+  }, 100);
 };
